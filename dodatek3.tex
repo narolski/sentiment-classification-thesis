@@ -1,0 +1,21 @@
+\chapter{Summary of the work in Polish}
+
+Celem niniejszej pracy dyplomowej było zaprojektowanie oraz zaimplementowanie systemu przeznaczonego do automatycznej klasyfikacji wydźwięku wypowiedzi, czyli ustalenia, czy dana wypowiedź jest pozytywna, negatywna bądź neutralna w odniesieniu do przedmiotu opinii, dla dokumentów tekstowych zawierających recenzje filmowe w języku polskim. Klasyfikacja opinii powinna zostać dokonana z dokładnością porównywalną z wiodącymi rozwiązaniami w swojej dziedzinie.
+
+Zaimplementowany system został oparty o model klasyfikatora bazującego na głębokich, rekurencyjnych sieciach neuronowych. Jego trenowanie odbywa się w trójetapowym procesie, składającym się z:
+
+\begin{enumerate}
+    \item Wstępnego trenowania \emph{ogólnego modelu językowego} na ogólnym, wielodziedzinowym zbiorze danych \emph{plwiki}, który został opracowany na bazie całej zawartości polskiej Wikipedii,
+    \item \emph{Dostrajania} bazowego ogólnego modelu językowego przy użyciu dziedzinowego, autorskiego zbioru danych \emph{Filmweb+}, w celu opracowania \emph{dziedzinowego modelu językowego} dla recenzji filmowych,
+    \item Trenowania powstałego na bazie dziedzinowego modelu językowego \emph{docelowego klasyfikatora} przy użyciu oetykietowanego podzbioru \lstinline{Filmweb+},
+\end{enumerate}
+
+który wykorzystuje założenia uczenia nienadzorowanego i \emph{transfer learningu} oraz metody regularyzacji rekurencyjnych sieci neuronowych opartych o komórki LSTM. Wykorzystywane korpusy danych zostały poddane procesowi \emph{tokenizacji}, który uwzględnia fleksyjną naturę języka polskiego.
+
+Zastosowane w pracy rozwiązania pozwalają na wytrenowanie docelowego klasyfikatora przy pomocy oetykietowanego zbioru danych, składającego się z zaledwie 3085 pozytywnych i 3085 negatywnych pod względem wydźwięku wypowiedzi przykładów recenzji filmowych, zawierających średnio 3512 znaków tekstu na recenzję (rozdział \ref{chapter:projectandimplementation}). Opracowany system osiągnął dokładność predykcji na zbiorze testowym wynoszącą 94,19\%, stanowiąc tym samym najlepszy wynik w dziedzinie klasyfikacji wydźwięku wypowiedzi długich, zawierających średnio ponad 500 słów dokumentów tekstowych w języku polskim.
+
+Podzielony na trzy rozdziały wstęp teoretyczny do pracy wprowadza czytelnika w zagadnienia dotyczące analizy wydźwięku wypowiedzi (rozdział \ref{chapter:sentiment}), najważniejsze problemy współczesnego uczenia maszynowego (rozdział \ref{chapter:mlbackground}) oraz przetwarzania tekstu i analizy wydźwięku wypowiedzi opartego o rekurencyjne sieci neuronowe (rozdział \ref{chapter:rnnnlp}).
+
+W ramach pracy przeprowadzono także eksperymenty (rozdział \ref{chapter:experiments}), w których przebadano wpływ liczności słownika tokenów, ilości oetykietowanych danych w korpusie uczącym i różnych strategii uczenia oraz hiperparametrów na dokładność docelowego klasyfikatora. Zmierzono także czas obliczeń, niezbędnych do wykonania w celu wytrenowania docelowego klasyfikatora, który wyniósł mniej niż 10 godzin przy użyciu ogólnie dostępnych, konsumenckich kart graficznych wspierających technologię \emph{CUDA}.
+
+Finalnie w pracy przedstawiono dalsze, możliwe do obrania kierunki badań i eksperymentów, a także potencjalne komercyjne zastosowania systemu. Obecne rozwiązanie może zostać rozbudowane w system do analizy odbioru filmów i seriali przez polską widownię, bazując na recenzjach zamieszczonych na stronach internetowych. Z uwagi na swą modularną budowę, zaproponowany system może być zastosowany do klasyfikacji wydźwięku wypowiedzi w opiniach z innych dziedzin, takich jak np. polityka, czy analiza wpływu marki. W zależności od obranych korpusów uczących, opracowany system może być także zastosowany do dowolnie wybranego problemu klasyfikacji dokumentów tekstowych, jak np. klasyfikacja tematu czy wykrywanie niechcianych wiadomości e-mail w dowolnym języku. Wówczas, dla dziedziny analizy rynkowej, potencjalne aplikacje systemu obejmują jego użycie jako weryfikatora dla generatora propozycji popularnych tematów, produktów, czy artykułów, który określa, czy dana propozycja odpowiada na zapotrzebowanie rynkowe (rozdział \ref{chapter:finalremarks}).

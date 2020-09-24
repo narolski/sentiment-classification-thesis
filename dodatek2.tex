@@ -1,0 +1,16 @@
+\chapter{Polish Film Reviews Crawler}
+\label{sorkin}
+
+A \lstinline{Filmweb+} dataset used in this work was obtained by an use of implemented \lstinline{Sorkin} system, which automatically downloads, pre-processes and stores Polish movie reviews fetched from major Polish blogs and websites, including:
+
+\begin{itemize}
+    \item \href{https://www.filmweb.pl/}{Filmweb}, 
+    \item \href{https://film.org.pl/}{Film.org.pl}, 
+    \item \href{https://kinoblog.video.blog/}{Kinoblog}, 
+    \item \href{https://fdb.pl/}{FDB}, 
+    \item \href{http://blogfilmowy24.blogspot.com/}{BlogFilmowy24}.
+\end{itemize}
+
+\lstinline{Sorkin} system performs queries to a pre-defined set of websites using available library methods, then generates a list of new, previously unseen links to reviews based on the contents of collections in a document-based \lstinline{MongoDB} database, and then downloads and stores new reviews in a text document format in either \lstinline{rated} or \lstinline{not_rated} collection, based on review details available.
+
+The system's source code is available for download on \href{https://github.com/maxster256/sorkin}{GitHub}.
